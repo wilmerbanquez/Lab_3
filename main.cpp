@@ -5,8 +5,25 @@ using namespace std;
 
 int main()
 {
-    char palabra[25];
-    cout << "Ingrese una palabra: "; cin >> palabra;
+    char palabra[200];
+    ofstream fout;
+    ifstream fin;
+    cout << "Ingrese una palabra: "; cin.getline(palabra, 200);
+    fout.open("texto.txt");
+    fout <<palabra;
+    fout.close();
+    fin.open("texto.txt");
+    int i=0;
+    while(fin.good())
+    {
+        char temp= fin.get();
+        if(fin.good())
+        {
+            palabra[i]=temp;
+        }
+        i++;
+    }
+    fin.close();
     int res;
     char bin[9];
     bin[8] = '\0';
