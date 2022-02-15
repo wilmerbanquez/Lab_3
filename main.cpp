@@ -58,6 +58,7 @@ int main()
         i++;
     }
     fin.close();
+    aux = 0;
     if(met == 1){
         for(int i = 0; i<sem; i++){
             if(palabra[i]==49){
@@ -68,7 +69,10 @@ int main()
                     palabra[i]++;
                 }
         }
+        for(int i = sem; palabra[i]!='\0'; i++){
 
+        }
+        cout <<palabra;
     }
     return 0;
 }
