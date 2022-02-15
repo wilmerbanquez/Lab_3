@@ -9,6 +9,8 @@ int main()
     ofstream fout;
     ifstream fin;
     cout << "Ingrese una palabra: "; cin.getline(palabra, 200);
+    int met; cout << "Ingrese el metodo de encriptacion (1 o 2): "; cin >> met;
+    int sem; cout << "Ingrese la semilla: "; cin >> sem;
     fout.open("texto.txt");
     fout <<palabra;
     fout.close();
@@ -24,6 +26,7 @@ int main()
         i++;
     }
     fin.close();
+    fout.open("texto.txt");
     int res;
     char bin[9];
     bin[8] = '\0';
@@ -39,8 +42,33 @@ int main()
             if(bin[0] != 48 or bin[0]!= 49)
                 bin[0] = 48;
         }
-        cout << bin;
+        fout << bin;
         aux = 7;
+    }
+    fout.close();
+    fin.open("texto.txt");
+    i=0;
+    while(fin.good())
+    {
+        char temp= fin.get();
+        if(fin.good())
+        {
+            palabra[i]=temp;
+        }
+        i++;
+    }
+    fin.close();
+    if(met == 1){
+        for(int i = 0; i<sem; i++){
+            if(palabra[i]==49){
+                palabra[i]--;
+            }
+            else
+                if(palabra[i]==48){
+                    palabra[i]++;
+                }
+        }
+
     }
     return 0;
 }
