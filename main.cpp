@@ -6,6 +6,9 @@ using namespace std;
 int main()
 {
     char palabra[200];
+    char palabra1[200];
+    int letras = 0;
+    int letras1 = 0;
     ofstream fout;
     ifstream fin;
     cout << "Ingrese una palabra: "; cin.getline(palabra, 200);
@@ -54,6 +57,7 @@ int main()
         if(fin.good())
         {
             palabra[i]=temp;
+            palabra1[i]=temp;
         }
         i++;
     }
@@ -126,7 +130,30 @@ fout.close();
     }
     else
         if(met == 2){
-            cout << palabra;
+            for(int i = 0;palabra[i]==48 or palabra[i]==49;i++){
+                letras++;
+            }
+            for(int i = 0; palabra1[i]==48 or palabra[i]==49;i++){
+                letras1++;
+            }
+            aux = 1; //multiplicador de la sem
+            int aux2 = 0;
+            int cont = 0;
+            for(int i = 0; palabra[i]==49 or palabra[i]==48 or palabra[i]!='\0'; i++){
+                if(i<aux*sem){
+                    palabra1[i+1]=palabra[i];
+                }
+                if(i==(aux*sem)-1){
+                    palabra1[(aux*sem)-(sem)]=palabra[i];
+                    aux+=1;
+                }
+            }
+            fout.open("texto.txt");
+            letras1-=1;
+            for(int i = 0; i<=letras1; i++){
+                fout << palabra1[i];
+            }
+            fout.close();
         }
     return 0;
 }
