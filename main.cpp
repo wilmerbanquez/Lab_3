@@ -11,9 +11,8 @@ int main()
     int letras1 = 0;
     ofstream fout;
     ifstream fin;
-    cout << "Ingrese una palabra: "; cin.getline(palabra, 200);
-    int met; cout << "Ingrese el metodo de encriptacion (1 o 2): "; cin >> met;
-    int sem; cout << "Ingrese la semilla: "; cin >> sem;
+    cout << "Ingrese la clave: "; cin.getline(palabra, 200);
+    int sem = 4;
     fout.open("texto.txt");
     fout <<palabra;
     fout.close();
@@ -57,103 +56,119 @@ int main()
         if(fin.good())
         {
             palabra[i]=temp;
-            palabra1[i]=temp;
         }
         i++;
     }
     fin.close();
     aux = 0;
-    if(met == 1){
-        for(int i = 0;i<sem;i++){
-            if(palabra[i] == 48){
-                aux++;
-            }
+    for(int i = 0;i<sem;i++){
+        if(palabra[i] == 48){
+            aux++;
         }
-        for(int i = 0; i<sem; i++){
-            if(palabra[i]==49){
-                palabra[i]--;
-            }
-            else
-                if(palabra[i]==48){
-                    palabra[i]++;
-                }
-        }
-        int aux1 = sem-aux;
-        if(aux>aux1){
-            aux = 2;
+    }
+    for(int i = 0; i<sem; i++){
+        if(palabra[i]==49){
+            palabra[i]--;
         }
         else
-            if(aux<aux1){
-                aux = 3;
+            if(palabra[i]==48){
+                palabra[i]++;
             }
-        else
-                if(aux==aux1){
-                    aux = 1;
-                }
+    }
+    int aux1 = sem-aux;
+    if(aux>aux1){
+        aux = 2;
+    }
+    else
+        if(aux<aux1){
+            aux = 3;
+        }
+    else
+            if(aux==aux1){
+                aux = 1;
+            }
 int aux2 = 1;
 int aux3 = 0;
 int cont = 0;
 int a = 2;
 for(int j = sem; palabra[j]==49 or palabra[j]==48; j++){
-    if(palabra[j]==48){
-        aux3++;
+if(palabra[j]==48){
+    aux3++;
+}
+if(aux2%aux==0 and palabra[j]==48){
+    palabra[j]++;
+}
+else
+    if(aux2%aux==0 and palabra[j]==49){
+        palabra[j]--;
     }
-    if(aux2%aux==0 and palabra[j]==48){
-        palabra[j]++;
+aux2++;
+if(j == (a*sem)-1 and cont>0){
+    aux1 = sem-aux3;
+    if(aux3>aux1){
+        aux = 2;
     }
-    else
-        if(aux2%aux==0 and palabra[j]==49){
-            palabra[j]--;
-        }
-    aux2++;
-    if(j == (a*sem)-1 and cont>0){
-        aux1 = sem-aux3;
-        if(aux3>aux1){
-            aux = 2;
-        }
-        if(aux3<aux1){
-            aux = 3;
-        }
-        if(aux3 == aux1){
-            aux=1;
-        }
-        aux3 = 0;
-        a +=1;
+    if(aux3<aux1){
+        aux = 3;
     }
-    cont+=4;
+    if(aux3 == aux1){
+        aux=1;
+    }
+    aux3 = 0;
+    a +=1;
+}
+cont+=4;
 }
 fout.open("texto.txt");
 for(int i = 0; palabra[i]== 48 or palabra[i]==49;i++){
-    fout << palabra[i];
+fout << palabra[i];
 }
 fout.close();
+fin.open("sudo.txt");
+i=0;
+while(fin.good())
+{
+    char temp= fin.get();
+    if(fin.good())
+    {
+        palabra1[i]=temp;
     }
-    else
-        if(met == 2){
-            for(int i = 0;palabra[i]==48 or palabra[i]==49;i++){
-                letras++;
-            }
-            for(int i = 0; palabra1[i]==48 or palabra[i]==49;i++){
-                letras1++;
-            }
-            aux = 1; //multiplicador de la sem
-            int aux2 = 0;
-            int cont = 0;
-            for(int i = 0; palabra[i]==49 or palabra[i]==48 or palabra[i]!='\0'; i++){
-                if(i<aux*sem){
-                    palabra1[i+1]=palabra[i];
-                }
-                if(i==(aux*sem)-1){
-                    palabra1[(aux*sem)-(sem)]=palabra[i];
-                    aux+=1;
-                }
-            }
-            fout.open("texto.txt");
-            letras1-=1;
-            for(int i = 0; i<=letras1; i++){
-                fout << palabra1[i];
-            }
-            fout.close();
-        }
+    i++;
+}
+fin.close();
+for(int i = 0;palabra[i]==48 or palabra[i]==49;i++){
+    letras++;
+}
+for(int i = 0; palabra1[i]==48 or palabra[i]==49;i++){
+    letras1++;
+}
+letras-=1;
+int contador = 0;
+for(int i = 0; i<=letras; i++){
+    if(palabra[i]!=palabra1[i]){
+        contador++;
+    }
+}
+if(contador==0){
+    int pre = 1;
+    while(pre==1){
+        cout << "Quiere registrar mas usuarios? (1 para si, 2 para no) "; cin >>pre;
+        if(pre!=1)
+            break;
+        char us[25];
+        char clave[25];
+        int saldo;
+        cout << "Ingrese el nombre de usario: "; cin >>us;
+        cout << "Ingrese la clave: "; cin >>clave;
+        cout << "Ingrese el saldo: "; cin >>saldo;
+        fout.open("usuarios.txt");
+        fout << us << ", " << clave << ", "<< saldo;
+    }
+    fout.close();
+}
+else
+    if(contador>0){
+        cout << "La clave es incorrecta"<< endl;
+    }
     return 0;
 }
