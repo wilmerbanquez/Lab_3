@@ -143,9 +143,6 @@ int main()
     for(int i = 0;palabra[i]==48 or palabra[i]==49;i++){
         letras++;
     }
-    for(int i = 0; palabra1[i]==48 or palabra[i]==49;i++){
-        letras1++;
-    }
     letras-=1;
     int contador = 0;
     for(int i = 0; i<=letras; i++){
