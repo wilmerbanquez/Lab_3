@@ -60,6 +60,11 @@ int main()
     fin.close();
     aux = 0;
     if(met == 1){
+        for(int i = 0;i<sem;i++){
+            if(palabra[i] == 48){
+                aux++;
+            }
+        }
         for(int i = 0; i<sem; i++){
             if(palabra[i]==49){
                 palabra[i]--;
@@ -69,10 +74,59 @@ int main()
                     palabra[i]++;
                 }
         }
-        for(int i = sem; palabra[i]!='\0'; i++){
-
+        int aux1 = sem-aux;
+        if(aux>aux1){
+            aux = 2;
         }
-        cout <<palabra;
+        else
+            if(aux<aux1){
+                aux = 3;
+            }
+        else
+                if(aux==aux1){
+                    aux = 1;
+                }
+int aux2 = 1;
+int aux3 = 0;
+int cont = 0;
+int a = 2;
+for(int j = sem; palabra[j]==49 or palabra[j]==48; j++){
+    if(palabra[j]==48){
+        aux3++;
     }
+    if(aux2%aux==0 and palabra[j]==48){
+        palabra[j]++;
+    }
+    else
+        if(aux2%aux==0 and palabra[j]==49){
+            palabra[j]--;
+        }
+    aux2++;
+    if(j == (a*sem)-1 and cont>0){
+        aux1 = sem-aux3;
+        if(aux3>aux1){
+            aux = 2;
+        }
+        if(aux3<aux1){
+            aux = 3;
+        }
+        if(aux3 == aux1){
+            aux=1;
+        }
+        aux3 = 0;
+        a +=1;
+    }
+    cont+=4;
+}
+fout.open("texto.txt");
+for(int i = 0; palabra[i]== 48 or palabra[i]==49;i++){
+    fout << palabra[i];
+}
+fout.close();
+    }
+    else
+        if(met == 2){
+            cout << palabra;
+        }
     return 0;
 }
