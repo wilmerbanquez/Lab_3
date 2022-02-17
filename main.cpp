@@ -150,7 +150,7 @@ for(int i = 0; i<=letras; i++){
     }
 }
 int admin;
-cout << "Quiere ingresar como admin? (1 para si 2 para no"; cin >>admin;
+cout << "Quiere ingresar como admin? (1 para si 2 para no) "; cin >>admin;
 if(admin != 1){
     int sal;
     cout << "Desea consultar saldo o retirar dinero? (1 para consultar saldo 2 para retirar"; cin >>sal;
