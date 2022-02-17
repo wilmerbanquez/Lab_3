@@ -149,7 +149,16 @@ for(int i = 0; i<=letras; i++){
         contador++;
     }
 }
-if(contador==0){
+int admin;
+cout << "Quiere ingresar como admin? (1 para si 2 para no"; cin >>admin;
+if(admin != 1){
+    int sal;
+    cout << "Desea consultar saldo o retirar dinero? (1 para consultar saldo 2 para retirar"; cin >>sal;
+    if(sal==1){
+
+    }
+}
+if(contador==0 and admin == 1){
     int pre = 1;
     while(pre==1){
         cout << "Quiere registrar mas usuarios? (1 para si, 2 para no) "; cin >>pre;
@@ -162,7 +171,7 @@ if(contador==0){
         cout << "Ingrese la clave: "; cin >>clave;
         cout << "Ingrese el saldo: "; cin >>saldo;
         fout.open("usuarios.txt");
-        fout << us << ", " << clave << ", "<< saldo;
+        fout << us << "," << clave << ","<< saldo;
     }
     fout.close();
 }
