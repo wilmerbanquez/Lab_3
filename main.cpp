@@ -155,18 +155,18 @@ int main()
     }
     if(contador==0 and admin == 1){
         int pre = 1;
+        fout.open("usuarios.txt");
         while(pre==1){
             cout << "Quiere registrar mas usuarios? (1 para si, 2 para no) "; cin >>pre;
             if(pre!=1)
                 break;
-            char us[25];
+            char ced[25];
             char clave[25];
             int saldo;
-            cout << "Ingrese el nombre de usario: "; cin >>us;
+            cout << "Ingrese el numero de cedula: "; cin >>ced;
             cout << "Ingrese la clave: "; cin >>clave;
             cout << "Ingrese el saldo: "; cin >>saldo;
-            fout.open("usuarios.txt");
-            fout << us << "," << clave << ","<< saldo;
+            fout << ced << "," << clave << ","<< saldo<<endl;
         }
         fout.close();
     }
@@ -178,9 +178,9 @@ int main()
     }
     else
         if(admin!=1){
-            char usu;
+            char ced;
             char clave;
-            cout <<"Ingrese su nombre de usuario: "; cin >>usu;
+            cout <<"Ingrese su numero de cedula: "; cin >>ced;
             cout <<"Ingrese su clave: "; cin >>clave;
         }
 
