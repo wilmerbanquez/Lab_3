@@ -188,7 +188,7 @@ int main()
 #include <fstream>
 
 using namespace std;
-//parte 2
+//Metodos de encriptacion
 int main()
 {
     char palabra[200];
